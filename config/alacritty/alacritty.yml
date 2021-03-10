@@ -58,7 +58,10 @@ scrolling:
 
 font:
   normal:
-    family: "Liberation Mono"
+    ## waiting for RFC to be approved: https://github.com/alacritty/alacritty/issues/957
+    #- family: "Liberation Mono"
+    #- family: "Menlo"
+    family: "Menlo"
   size: 13.2
 
   offset:
