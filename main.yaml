@@ -1,6 +1,6 @@
 - hosts: localhost
   vars_files:
-    - vars.yaml
+    - files/vars.yaml
   tasks:
     - name: Enable Flathub repository
       command: flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -87,6 +87,7 @@
       loop:
         - user.name '{{ git.name }}'
         - user.email {{ git.email }}
+        - credential.helper libsecret
     - name: Git pull submodules
       command:
         cmd: git pull --recurse-submodules

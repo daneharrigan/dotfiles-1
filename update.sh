@@ -1,3 +1,3 @@
 #!/bin/sh
 
-ansible-playbook -K files/main.yaml
+ansible-playbook -K main.yaml
