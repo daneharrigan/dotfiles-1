@@ -1,0 +1,35 @@
+- hosts: localhost
+  vars_files:
+    - vars.yaml
+  tasks:
+    - name: Set ZDOTDIR in zshenv
+      lineinfile:
+        dest: '~/.zshenv'
+        regexp: 'export ZDOTDIR=~/.dotfiles/config/zsh'
+        line: 'export ZDOTDIR=~/.dotfiles/config/zsh'
+        create: true
+    - name: Set hostname
+      command: hostname {{ hostname }}
+      become: true
+    - name: Link configs that must be in XDG_CONFIG_HOME
+      file:
+        src: '~/.dotfiles/config/{{ item }}'
+        dest: '~/.config/{{ item }}'
+        state: link
+        force: true
+      loop:
+        - alacritty
+        - git
+    - name: Create local directories
+      command: mkdir -p ~/.local/{{ item }}
+      loop:
+        - git
+    - name: Configure Git
+      command: git config -f ~/.local/git/config {{ item }}
+      loop:
+        - user.name '{{ git.name }}'
+        - user.email {{ git.email }}
+    - name: Git pull submodules
+      command:
+        cmd: git pull --recurse-submodules
+        chdir: ~/.dotfiles
