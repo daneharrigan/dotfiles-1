@@ -14,4 +14,4 @@
 
 chsh -s /usr/local/bin/zsh
 PATH=$(pip3 show ansible | grep Location | cut -d " " -f 2):$PATH
-ansible-playbook -K ../files/shell.yaml
+ansible-playbook -K main.yaml

@@ -1,6 +1,6 @@
 - hosts: localhost
   vars_files:
-    - vars.yaml
+    - ../files/vars.yaml
   tasks:
     - name: Set ZDOTDIR in zshenv
       lineinfile:
@@ -29,6 +29,7 @@
       loop:
         - user.name '{{ git.name }}'
         - user.email {{ git.email }}
+        - credential.helper osxkeychain
     - name: Git pull submodules
       command:
         cmd: git pull --recurse-submodules
