@@ -46,8 +46,8 @@ if [ -f ~/.local/zsh/zshrc ]; then
   source ~/.local/zsh/zshrc
 fi
 
-if [ "$(uname -s)" -eq  "Darwin" ]; then
-  source ~/zshrc.darwin
+if [[ "$(uname -s)" ==  "Darwin" ]]; then
+  source ~/.dotfiles/config/zsh/zshrc.darwin
 fi
 
 if [ -z "$TMUX" ]; then
