@@ -46,6 +46,10 @@ if [ -f ~/.local/zsh/zshrc ]; then
   source ~/.local/zsh/zshrc
 fi
 
+if [ "$(uname -s)" -eq  "Darwin" ]; then
+  source ~/zshrc.darwin
+fi
+
 if [ -z "$TMUX" ]; then
   tmux list-sessions > /dev/null 2>&1
   if [ $? -eq 0 ]; then
